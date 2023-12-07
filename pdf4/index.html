@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- html2canvas library -->
+<script src="./html2canvas.min.js"></script>
+
+<!-- jsPDF library -->
+<script src="./jsPDF/dist/jspdf.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./jsPDF/dist/polyfills.umd.js"></script>
+<script type="text/javascript" src="./jsPDF/dist/jspdf.umd.js"></script>
+
+</head>
+<body>
+
+<!-- Trigger button -->
+<button onclick="Convert_HTML_To_PDF();">Convert HTML to PDF</button>
+
+<!-- HTML content for PDF creation -->
+<div id="contentToPrint">
+    <h1>What is Lorem Ipsum?</h1>
+	
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	
+    <img src="images/image1.jpg">
+
+    <img src="images/image2.jpeg">
+</div>
+<script>
+	window.jsPDF = window.jspdf.jsPDF;
+	//Bunun calismasi icin, direk jsPDF klasorunun download edilip o klasorun, script icnden cagrilmasi gerekir, yani cdn ile script icinde ekleyerek bunu tanimiyor
+	//Ayrica..html2canvas.js nin de dosya olarak indirilmesi gerekiyor yoksa bu islemi yapamiyoruz... 
+	//Ayrica.. da jspdf in ya dosya olarak indrilip disc altindaki bir js dosyasinin cagrilmasi ya da cdn uzerinden indirilmesi gerekiyor...
+	function Convert_HTML_To_PDF() {
+
+		 var doc = new jsPDF();
+		
+		
+		 // Source HTMLElement or a string containing HTML.
+		 var elementHTML = document.querySelector("#contentToPrint");
+	
+		 doc.html(elementHTML, {
+			  callback: function(doc) {
+					// Save the PDF
+					//  doc.save('document-html.pdf');
+					//open the page
+					window.open(doc.output('bloburl'), '_blank');
+			  },
+			  margin: [10, 10, 10, 10],
+			  autoPaging: 'text',
+			  x: 0,
+			  y: 0,
+			  width: 190, //target width in the PDF document
+			  windowWidth: 675 //window width in CSS pixels
+		 });
+	}
+</script>
+</body>
+</html>
