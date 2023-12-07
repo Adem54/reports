@@ -73,3 +73,90 @@
 </script>
 </body>
 </html>
+
+<!--
+
+	report_time.tpl de PDF RAPORUNDA HER SEFERINDE OLUSAN 4-5 TANE BOS SAYFANIN KALDIRILMASI…BESTPRACTISE!!!!!																							
+																							
+																							
+   function pdfFromHTML(sDiv)																							
+   {																							
+      																							
+      nss_show_waitdialog();																							
+      																							
+      window.jsPDF = window.jspdf.jsPDF;																							
+																							
+      let pdf = new jsPDF('p', 'mm', 'a4');																							
+																							
+      pdf.page=1;																							
+      																							
+      //Source HTMLElement or a string containing HTML.																							
+      let elementHTML = document.querySelector("#"+sDiv);																							
+      $("#"+sDiv).show();																							
+																							
+      elementHTML.classList.add("pdf-table");																							
+      																							
+      pdf.html(elementHTML, {																							
+          callback: function(doc) {																							
+																							
+          $("#"+sDiv).hide();																							
+         //elementHTML.style.display = "none";																							
+         //elementHTML.style.display="none";																							
+         nss_hide_waitdialog();																							
+            																							
+         window.open(doc.output('bloburl'), '_blank');																							
+         //window.open(doc.output('bloburl'));																							
+         																							
+         },																							
+         margin: [5, 5, 5, 5],																							
+         autoPaging: 'text',																							
+         x: 0,//15,																							
+         y: 0,//15,																							
+																							
+         width: 200,//170, //target width in the PDF document																							
+         windowWidth: 650//650 //window width in CSS pixels       																							
+      });																							
+      																							
+      //function footer(){ 																							
+      //  pdf.text(150,285, 'page ' + doc.page); //print number bottom right																							
+      //  pdf.page ++;																							
+      //};  																							
+   }																							
+																							
+																							
+This table for reports printout  																							
+<div class="row nss_top_margin" id="print_report_time" style="display: none; ">																							
+	   <div class="col-sm-12">																							
+	      <table >																							
+	         <thead>															HATA SEBEBI!!!!!								
+	            <tr>															Boostrapten gelen class lardan dolayi gereksiz bos sayfalar olusuyor pdf de								
+	               <th>Område</th>															  <table class="table table-stripe">								
+	               <th>Start</th>																							
+	               <th>Slutt</th>															HATA COZUMU								
+	               <th style="text-align: right;">Tid</th>															Bootstrap class ini kaldiralim ve kendi class imizi kullanirsak bu cok harika bir cozul olacaktir								
+	               <th>Navn</th>															      <table >								
+	            </tr>															KENDI CUSTOM CLASS IMIZI KULLANMAK								
+	         </thead>																							
+	         <tbody>															      elementHTML.classList.add("pdf-table");								
+	            {{@loop:timelist2}}																							
+	            <tr style="font-size:12px;">																							
+	               <td>{{@timelist2:areaname}}</td>															/* Style for table header */								
+	               <td>{{@timelist2:disptimefrom}}</td>															   .pdf-table th {								
+	               <td>{{@timelist2:disptimeto}}</td>															   background-color: #f2f2f2;								
+	               <td style="text-align: right;">{{@timelist2:totaltime}}</td>															   								
+	               <td>{{@timelist2:name}}</td>															   padding: 8px 20px;								
+	            </tr>															   text-align: left;								
+	            {{@end-loop:timelist2}}															   /* Add other necessary styles */								
+	            <tr>															   }								
+	               <th>Sum:</th>																							
+	               <th></th>															   /* Style for table rows */								
+	               <th></th>															   .pdf-table td {								
+	               <th style="text-align: right;">{{@sum_totaltime}}</th>															   border: 1px solid #ddd;								
+	               <th></th>															   padding: 8px 24px;								
+	            </tr>																							
+	         </tbody>															   /* Add other necessary styles */								
+	      </table>															   }								
+	   </div>																							
+	</div>																							
+	
+-->
