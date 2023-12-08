@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+
+		.container {
+			background-color:bisque;
+			
+			padding:1rem;
+			border-radius: .4rem;
+	
+		}
+		.cssInp>p {
+			width: 20%;
+			padding: .4rem;
+			border-radius: .2rem;
+			border:1px solid tomato;
+			text-align: center;
+			font-weight: bold;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			margin:1rem auto;
+		}
+
+		h2 {
+			text-align: center;
+		}
+
+		@media only print {
+         body {
+            /* visibility: hidden; */
+				background-color: red;
+         }
+         .cssInp {
+            visibility: visible;
+         }
+      }
+	</style>
+
+</head>
+<body >
+   
+  <section class="container">
+	<h2>
+      Print a page using
+      <i>CSS print media query</i>
+   </h2>
+   <div class="cssInp">
+      <p>Print One</p>
+      <p>Print Two</p>
+      <p>Print Three</p>
+   </div>
+  </section>
+   <div id="cssBtnWrap">
+      <h3>Click this button</h3>
+      <button onclick="cssPrint()">Print Page</button>
+   </div>
+   <p id="cssOp"></p>
+   <script>
+      var cssOutEl = document.getElementById("cssOp");
+      var cssBtnWrapEl = document.getElementById("cssBtnWrap");
+      function cssPrint() {
+         cssOutEl.innerHTML = "Printing the document...";
+         cssBtnWrapEl.style.display = "none";
+         print();
+      }
+   </script>
+</body>
+</html>
